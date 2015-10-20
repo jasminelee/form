@@ -1,0 +1,9 @@
+h1 Hello world!
+ul
+  - @kinds.each do |kind|
+    = puts "WHYYYYY"
+    = puts kind.id
+    li = link_to "Instance of a survey kind", new_survey_url
+    li = kind.description
+    li = kind.questions
+    br

@@ -1,0 +1,15 @@
+h1 Take a Survey
+= puts "HOOOO"
+
+= form_for @survey do |f|
+	= f.label :kind_id
+	= f.text_field :kind_id
+	br
+	= f.label :questions
+	= f.text_field :questions
+	br
+	= f.label :answers
+	= f.text_field :answers
+
+	.buttons
+		= f.submit "Submit the survey" 
