@@ -1,0 +1,21 @@
+<%= javascript_include_tag 'new.js.erb' %> 
+
+<script>
+</script> 
+
+<h1> Take a Survey </h1> 
+<%= puts "HOOOO" %>
+<%= puts @data %>
+
+<%= content_tag :div, class: "temp", data: {data: @data} do %>
+<% end %>
+
+<%= form_for @survey do |f| %>
+	<div class="question">
+		Hello, world!
+	</div>
+	<%= f.hidden_field :kind_id, :value => 1%>
+		<%= f.hidden_field :questions, :value => "[ { Q1: [ A1: A2]}]" %>
+		<%= f.hidden_field :answers, :value => "[ User's name [ Answers]]" %>
+		<%= f.submit "Submit the survey" %>
+<% end %>
