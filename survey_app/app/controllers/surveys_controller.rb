@@ -1,11 +1,19 @@
 class SurveysController < ApplicationController
+  respond_to :html, :js
 
   def index #different surveys you can take
     @kinds = Kind.all()
+
+    respond_to do |format|
+      format.html
+      format.json
+    end
   end
 
   def new 
     @survey = Survey.new()
+    @data = File.read("public/assets/follow_ups.json")
+#    render :json => @data
   end
 
   #TODO: figure out how to select a kind
