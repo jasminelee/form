@@ -1,0 +1,43 @@
+// problem: javascript file is included and downloaded separately from the rest of the application's assets. 
+// This causes the browser to make another request to the server, thus increasing the page load time and in turn, which isn't ideal
+
+<!-- $(document).ready(function() {
+	console.log("New.js.erb -- trying stuff out");
+
+	var stuff = $('.questions_class').data('questions');
+	var questions = JSON.parse(stuff);
+	console.log(questions);
+	$('#question').append(JSON.stringify(questions[0]['question']));
+	
+	var answer = $('#answer');
+	$('#answer').on("change", function() {
+		console.log(answer.val());
+	});
+
+	$("#answer_form").val("shit");
+
+});
+ -->
+
+// render is for partials 
+
+// console.log(questions)
+
+// for (question in questions){
+// 	console.log(question);
+// }
+
+ // $('<label/>').attr(for: question.identifier).text(question.text).appendTo(some form)
+ //    $('<input/>').attr(type: 'text', name: question.identifier).appendTo(some form)
+
+
+// class QuestionHandler {
+
+// 	recursively parse through json object 
+// 	use jQuery to access id/class labels and render questions (using jQuery)
+
+
+// 	save users answers to hidden fields using jQuery
+// 	hidden fields must be :answers, :kind_id, :questions bc Create action is expecting it 
+
+// 	$().submit()
