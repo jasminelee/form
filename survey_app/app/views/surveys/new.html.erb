@@ -1,6 +1,55 @@
 <%= javascript_include_tag 'new.js.erb' %> 
 
 <script>
+$(document).ready(function() {
+	console.log("New.js.erb -- trying stuff out");
+
+	var answer_json = [];
+
+	var stuff = $('.questions_class').data('questions');
+	var questions = JSON.parse(stuff)
+	console.log(questions);
+
+	function recurse(obj) {
+		$.each(obj, function (key, value) {
+			if (value['choices']) {
+				console.log(value['choices'])
+			}
+			else if (typeof value == 'object') {
+				recurse(value)
+			}
+			else { // ??
+				var q1 = JSON.stringify(questions[key]['question'])
+				console.log(q1)
+				$('#question').append(q1);
+				answer_json.push({
+					q: q1,
+					a: $('#answer').val()
+				})
+				console.log(answer_json)
+				console.log(key, value)
+			}
+		});
+	}
+
+//	$('#question').append(JSON.stringify(questions[0]['question']));
+//	var question = questions[0]['question']
+
+	var answer = $('#answer');
+	$('#answer').on("change", function() {
+		console.log(answer.val());
+		answer_json.push({
+			q: question, 
+			a: answer.val()
+		});
+		console.log(answer_json)
+		console.log(JSON.stringify(answer_json))
+		$("#answer_form").val(JSON.stringify(answer_json));
+	});
+
+	recurse(questions); 
+
+});
 </script> 
 
 <h1> Take a Survey </h1> 
@@ -11,11 +60,12 @@
 <% end %>
 
 <%= form_for @survey do |f| %>
-	<div class="question">
-		Hello, world!
+	<div id="question">
 	</div>
+	<input type="text" id="answer">
+	</input>
 	<%= f.hidden_field :kind_id, :value => 1%>
-		<%= f.hidden_field :questions, :value => "[ { Q1: [ A1: A2]}]" %>
-		<%= f.hidden_field :answers, :value => "[ User's name [ Answers]]" %>
+		<%= f.hidden_field :questions, :value => @data %>
+		<%= f.hidden_field :answers, :id => "answer_form" %>
 		<%= f.submit "Submit the survey" %>
 <% end %>

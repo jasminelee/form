@@ -1,17 +1,23 @@
 // problem: javascript file is included and downloaded separately from the rest of the application's assets. 
 // This causes the browser to make another request to the server, thus increasing the page load time and in turn, which isn't ideal
 
-$(document).ready(function() {
+<!-- $(document).ready(function() {
 	console.log("New.js.erb -- trying stuff out");
 
 	var stuff = $('.questions_class').data('questions');
 	var questions = JSON.parse(stuff);
+	console.log(questions);
+	$('#question').append(JSON.stringify(questions[0]['question']));
+	
+	var answer = $('#answer');
+	$('#answer').on("change", function() {
+		console.log(answer.val());
+	});
 
-	for (question in questions)	 {
-		console.log(questions[question])
-	}
+	$("#answer_form").val("shit");
+
 });
-
+ -->
 
 // render is for partials 
 
