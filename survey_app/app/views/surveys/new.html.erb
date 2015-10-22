@@ -12,22 +12,53 @@ $(document).ready(function() {
 
 	function recurse(obj) {
 		$.each(obj, function (key, value) {
-			if (value['choices']) {
-				console.log(value['choices'])
+//			console.log(obj, key, value)
+			if (value.hasOwnProperty('choices')) {
+				console.log(key);
+				var intId = $(".form_div div").length + 1;
+
+				var new_wrapper = $('<div class= wrapper, id = ' + intId + '/>');
+				
+				$(".form_div div").append(new_wrapper); // where do I put this? 
+
+				var show_question = value['question'];
+
+				new_wrapper.append(show_question);
+
+//				$('#question').append(show_question)
+				
+
+				var selections = (value['choices']);
+				var show_choice = [];
+				var choices = $.each(selections, function(k, v) {
+					show_choice.push(" " + v['choice']);
+				
+				});
+
+				console.log(show_choice)
+				new_wrapper.append(" Your choices are: " + show_choice)
+
+				var additional_answer_input = $('<input type=text, id= answer' + intId + '/>');
+				new_wrapper.append(additional_answer_input)
+
+
+//				console.log(obj, key, value)
+			}
+			else if (value['choices']) {
+//				console.log(value['choices']);
 			}
 			else if (typeof value == 'object') {
-				recurse(value)
+				recurse(value);
 			}
 			else { // ??
-				var q1 = JSON.stringify(questions[key]['question'])
-				console.log(q1)
-				$('#question').append(q1);
+				var q1 = obj['question']
+//				$('#question').append(q1);
 				answer_json.push({
 					q: q1,
 					a: $('#answer').val()
 				})
-				console.log(answer_json)
-				console.log(key, value)
+//				console.log(answer_json)
+				//console.log(key, value);
 			}
 		});
 	}
@@ -37,7 +68,7 @@ $(document).ready(function() {
 
 	var answer = $('#answer');
 	$('#answer').on("change", function() {
-		console.log(answer.val());
+//		console.log(answer.val());
 		answer_json.push({
 			q: question, 
 			a: answer.val()
@@ -60,10 +91,16 @@ $(document).ready(function() {
 <% end %>
 
 <%= form_for @survey do |f| %>
-	<div id="question">
+
+	<div class ="form_div">
+		<div class="wrapper">
+			<div id="question">
+			</div>
+<!-- 			<input type="text" id="answer">
+			</input> -->
+		</div>
 	</div>
-	<input type="text" id="answer">
-	</input>
+
 	<%= f.hidden_field :kind_id, :value => 1%>
 		<%= f.hidden_field :questions, :value => @data %>
 		<%= f.hidden_field :answers, :id => "answer_form" %>
