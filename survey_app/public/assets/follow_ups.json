@@ -1,21 +1,4 @@
-function recursiveDecode(obj){
-
-  $.each(obj, function(n, v) {
-
-    if(typeof v === 'object'){
-      recursiveDecode(v);
-    }  
-    else{
-      console.log(n +'='+v);
-    }
-
-  });
-
-};
-
-recursiveDecode(j); 
-
-j = {[
+[
   {
     "question": "What is your favorite food?"
   }, 
@@ -82,4 +65,4 @@ j = {[
       }
     ]
   }
-]};
+]

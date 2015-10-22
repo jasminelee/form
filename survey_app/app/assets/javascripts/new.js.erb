@@ -1,14 +1,17 @@
-//  
 // problem: javascript file is included and downloaded separately from the rest of the application's assets. 
 // This causes the browser to make another request to the server, thus increasing the page load time and in turn, which isn't ideal
-// 
 
-console.log("New.js.erb -- trying stuff out")
+$(document).ready(function() {
+	console.log("New.js.erb -- trying stuff out");
 
+	var stuff = $('.questions_class').data('questions');
+	var questions = JSON.parse(stuff);
 
-var stuff = $('.temp').data('data')
-console.log(stuff)
-console.log("plz")
+	for (question in questions)	 {
+		console.log(questions[question])
+	}
+});
+
 
 // render is for partials 
 

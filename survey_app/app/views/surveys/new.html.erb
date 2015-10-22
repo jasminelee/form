@@ -7,7 +7,7 @@
 <%= puts "HOOOO" %>
 <%= puts @data %>
 
-<%= content_tag :div, class: "temp", data: {data: @data} do %>
+<%= content_tag :div, class: "questions_class", data: {questions: @data} do %>
 <% end %>
 
 <%= form_for @survey do |f| %>
