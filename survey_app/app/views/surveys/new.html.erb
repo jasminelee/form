@@ -45,6 +45,11 @@ $(document).ready(function() {
 						q: show_question, 
 						a: answer.val()
 						});
+						$.each(value['choices'],  function(k, v) {
+							if (answer.val() == v['choice'] & v.hasOwnProperty('follow-ups')) {
+								recurse(v['follow-ups']);
+							}
+						});
 					}
 					else { 
 						alert("Please choose one of the provided options.");
@@ -57,21 +62,31 @@ $(document).ready(function() {
 				});
 //				console.log(obj, key, value)
 			}
-			else if (value['choices']) {
-//				console.log(value['choices']);
-			}
-			else if (typeof value == 'object') {
-				recurse(value);
-			}
 			else { // ??
-				var q1 = obj['question']
-//				$('#question').append(q1);
-				answer_json.push({
-					q: q1,
-					a: $('#answer').val()
-				})
-//				console.log(answer_json)
-				//console.log(key, value);
+
+				var intId = $(".form_div div").length + 1 + key;
+				var new_wrapper = $('<div class= wrapper, id = ' + intId + '/>');
+
+				$(".form_div div").append(new_wrapper); // create new wrapper of
+
+				var show_question = value['question'];
+
+				new_wrapper.append(show_question);
+				var additional_answer_input = $('<input type=text, id= answer' + intId + '>');
+				new_wrapper.append(additional_answer_input)
+
+				var answer = $('#answer' + intId);
+				answer.on("change", function() {
+			//		console.log(answer.val());
+					answer_json.push({
+						q: show_question, 
+						a: answer.val()
+					});
+					console.log(answer_json)
+					console.log(JSON.stringify(answer_json))
+					$("#answer_form").val(JSON.stringify(answer_json));
+				});
+
 			}
 		});
 	}
