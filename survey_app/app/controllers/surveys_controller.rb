@@ -21,19 +21,6 @@ class SurveysController < ApplicationController
     @survey = Survey.new(survey_params)
     @survey.user_id = current_user.id
 
-    puts "FUUUUCK"
-    puts @survey.kind_id
-#    kind = build(kind: params[:kind])
-
-  #    @survey.kind = Kind.find(params[:kind_id])
-    #TODO: i have no idea what's going on
-    # variable name shouldn't be @kind 
-#    @kind = current_user.surveys.build(questions: "fsdf") # breaks without the questions option
-    # @survey.questions = @kind.questions
-
-#    questions = current_user.surveys.build(questions: params[:questions]) # breaks without the questions option
-#    @survey.answers = params[:answers].to_json
-    
     if @survey.save
       redirect_to surveys_url
     else

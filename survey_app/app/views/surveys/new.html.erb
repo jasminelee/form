@@ -12,9 +12,7 @@ $(document).ready(function() {
 
 	function recurse(obj) {
 		$.each(obj, function (key, value) {
-//			console.log(obj, key, value)
 			if (value.hasOwnProperty('choices')) {
-//				console.log(key);
 
 				var intId = $(".form_div div").length + 1 + key;
 				var new_wrapper = $('<div class= wrapper, id = ' + intId + '/>');
@@ -32,7 +30,6 @@ $(document).ready(function() {
 				
 				});
 
-//				console.log(show_choice)
 				new_wrapper.append(" Your choices are: " + show_choice)
 
 				var additional_answer_input = $('<input type=text, id= answer' + intId + '>');
@@ -62,7 +59,7 @@ $(document).ready(function() {
 				});
 //				console.log(obj, key, value)
 			}
-			else { // ??
+			else { 
 
 				var intId = $(".form_div div").length + 1 + key;
 				var new_wrapper = $('<div class= wrapper, id = ' + intId + '/>');
@@ -91,30 +88,21 @@ $(document).ready(function() {
 		});
 	}
 
-//	$('#question').append(JSON.stringify(questions[0]['question']));
-//	var question = questions[0]['question']
-
-// 	var answer = $('#answer');
-// 	$('#answer').on("change", function() {
-// //		console.log(answer.val());
-// 		answer_json.push({
-// 			q: question, 
-// 			a: answer.val()
-// 		});
-// 		console.log(answer_json)
-// 		console.log(JSON.stringify(answer_json))
-// 		$("#answer_form").val(JSON.stringify(answer_json));
-// 	});
-
 	recurse(questions); 
+
+	// if user tries submitting an empty survey
+	var submit_button = $('#submit_button');
+	submit_button.on("click", function() {
+		if ($('#answer_form').val() == 0) {
+			alert("You must fill in the form.");
+			return false;
+		}
+	});
 
 });
 </script> 
 
-<h1> Take a Survey </h1> 
-<%= puts "HOOOO" %>
-<%= puts @data %>
-
+<h1> Questions </h1> 
 <%= content_tag :div, class: "questions_class", data: {questions: @data} do %>
 <% end %>
 
@@ -122,15 +110,11 @@ $(document).ready(function() {
 
 	<div class ="form_div">
 		<div class="wrapper">
-			<!-- <div id="question">
-			</div> -->
-<!-- 			<input type="text" id="answer">
-			</input> -->
 		</div>
 	</div>
 
-	<%= f.hidden_field :kind_id, :value => 1%>
+	<%= f.hidden_field :kind_id, :value => :kind %> <!-- 0 by default --> 
 		<%= f.hidden_field :questions, :value => @data %>
 		<%= f.hidden_field :answers, :id => "answer_form" %>
-		<%= f.submit "Submit the survey" %>
+		<%= f.submit "Submit the survey", :id => "submit_button" %>
 <% end %>

@@ -2,12 +2,21 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.wrapper {
+	padding-top: 10px;
+	margin-bottom: 10px;
+}
+
+input[type='text'] {
+
+}
+
 .question {
 	color: green;
 	size: 24px;
 }
 
-.answer {
+#answer {
 	color: red;
 	size: 20px;
 }
