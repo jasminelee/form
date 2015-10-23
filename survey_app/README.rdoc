@@ -1,28 +1,25 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Author: Jasmine Lee
 
-Things you may want to cover:
+* Ruby version: ~> 2.1.2
 
-* Ruby version
+* System dependencies: N/A
 
-* System dependencies
+* Configuration: N/A
 
-* Configuration
+* Database creation: N/A
 
-* Database creation
+* Database initialization:
+	1. Open up the rails console by typing "rails c" in the command line.
+	2. Initialize a survey Kind by typing "s = Kind.new()" in the rails console. 
+	3. Fill in the the survey Kind's name and description by setting 
+		"Kind.name = <Name of Survey Here>" and "Kind.description = <Description of Survey>".
+		Then save by doing "s.save()"
+	4. Now go to localhost:3000/ and begin using the GUI. 
 
-* Database initialization
+* No test suite. 
 
-* How to run the test suite
+* No third party APIs used. 
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+* Used Devise gem for user authentication and Bootstrap for basic GUI styling. 

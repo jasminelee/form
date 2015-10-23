@@ -4,7 +4,7 @@ p "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo
 ul
   - @kinds.each do |kind|
     = puts kind.id
-    li = link_to kind.name, new_survey_url(kind: kind.id)
+    li = link_to kind.name, new_survey_url(kind: kind.id) 
     li
     	| Description: 
     	= kind.description

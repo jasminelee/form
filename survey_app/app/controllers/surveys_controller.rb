@@ -1,7 +1,7 @@
 class SurveysController < ApplicationController
-  respond_to :html, :js
+  respond_to :html, :js #Potential for creating a Surveys API 
 
-  def index #different surveys you can take
+  def index
     @kinds = Kind.all()
 
     respond_to do |format|
@@ -12,11 +12,9 @@ class SurveysController < ApplicationController
 
   def new 
     @survey = Survey.new()
-    @data = File.read("public/assets/follow_ups.json")
-#    render :json => @data
+    @data = File.read("public/assets/follow_ups.json") # Users can only take one survey, for now. 
   end
 
-  #TODO: figure out how to select a kind
   def create
     @survey = Survey.new(survey_params)
     @survey.user_id = current_user.id
@@ -29,19 +27,6 @@ class SurveysController < ApplicationController
     end
   end
 
-  def edit
-  end
-
-  def show
-    @survey = Survey.find(params[:id])
-#    redirect_to survey_url(@survey)
-  end
-
-  def update
-  end
-
-  def destroy
-  end
 
   private
 
