@@ -14,27 +14,25 @@ $(document).ready(function() {
 		$.each(obj, function (key, value) {
 //			console.log(obj, key, value)
 			if (value.hasOwnProperty('choices')) {
-				console.log(key);
-				var intId = $(".form_div div").length + 1 + key;
+//				console.log(key);
 
+				var intId = $(".form_div div").length + 1 + key;
 				var new_wrapper = $('<div class= wrapper, id = ' + intId + '/>');
-				
-				$(".form_div div").append(new_wrapper); // where do I put this? 
+
+				$(".form_div div").append(new_wrapper); // create new wrapper of
 
 				var show_question = value['question'];
 
 				new_wrapper.append(show_question);
 
-//				$('#question').append(show_question)
-
 				var selections = (value['choices']);
 				var show_choice = [];
 				var choices = $.each(selections, function(k, v) {
-					show_choice.push(" " + v['choice']);
+					show_choice.push(v['choice']);
 				
 				});
 
-				console.log(show_choice)
+//				console.log(show_choice)
 				new_wrapper.append(" Your choices are: " + show_choice)
 
 				var additional_answer_input = $('<input type=text, id= answer' + intId + '>');
@@ -42,16 +40,21 @@ $(document).ready(function() {
 
 				var answer = $('#answer' + intId);
 				answer.on("change", function() {
-			//		console.log(answer.val());
-					answer_json.push({
+					if ($.inArray(answer.val(), show_choice) != -1) { // if answer in choices
+						answer_json.push({
 						q: show_question, 
 						a: answer.val()
-					});
-					console.log(answer_json)
-					console.log(JSON.stringify(answer_json))
+						});
+					}
+					else { 
+						alert("Please choose one of the provided options.");
+					}
+			//		console.log(answer.val());
+
+//					console.log(answer_json)
+//					console.log(JSON.stringify(answer_json))
 					$("#answer_form").val(JSON.stringify(answer_json));
 				});
-
 //				console.log(obj, key, value)
 			}
 			else if (value['choices']) {
@@ -104,8 +107,8 @@ $(document).ready(function() {
 
 	<div class ="form_div">
 		<div class="wrapper">
-			<div id="question">
-			</div>
+			<!-- <div id="question">
+			</div> -->
 <!-- 			<input type="text" id="answer">
 			</input> -->
 		</div>
