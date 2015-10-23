@@ -10,6 +10,8 @@ Author: Jasmine Lee
 
 * Database creation: N/A
 
+* Demo video: https://www.icloud.com/sharedalbum/#B0PJtdOXmGq27hQ
+
 * Database initialization:
 	1. Open up the rails console by typing "rails c" in the command line.
 	2. Initialize a survey Kind by typing "s = Kind.new()" in the rails console. 
@@ -22,4 +24,4 @@ Author: Jasmine Lee
 
 * No third party APIs used. 
 
-* Used Devise gem for user authentication and Bootstrap for basic GUI styling. 
+* Used Devise gem for user authentication and Bootstrap for basic GUI styling.
